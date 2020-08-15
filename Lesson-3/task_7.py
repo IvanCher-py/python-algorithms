@@ -13,8 +13,7 @@ a = 0
 b = 0
 for x in array:
     if x <= a:
-        a = x
-        b = a
+        a, b = x, a
     elif x < b:
         b = x
 
