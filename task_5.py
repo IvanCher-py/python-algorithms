@@ -1,13 +1,25 @@
-# Задание № 5 - Пользователь вводит две буквы. Определить, на каких местах
-# алфавита они стоят, и сколько между ними находится букв.
+# В массиве найти максимальный отрицательный элемент. Вывести на экран его значение и позицию в массиве.
+# Примечание к задаче: пожалуйста не путайте «минимальный» и «максимальный отрицательный».
+# Это два абсолютно разных значения.
 
-letter_one, letter_two = input('Введитe две строчные латинские буквы через пробел: ').split()
+import random
 
-scii_starta = 96
-place_one = ord(letter_one) - ascii_start
-place_two = ord(letter_two) - ascii_start
-amount_letter = abs(place_one - place_two) - 1
+SIZE = 10
+MIN_ITEM = -10
+MAX_ITEM = 10
+array = [random.randint(MIN_ITEM, MAX_ITEM) for _ in range(SIZE)]
+print(array)
 
-print(f'Буква: {letter_one}, позиция в алфавите: {place_one}')
-print(f'Буква: {letter_two}, позиция в алфавите: {place_two}')
-print(f'Количество букв между ними: {amount_letter}')
+min_index = 0
+for i in range(1, len(array)):
+    if array[i] < array[min_index]:
+        min_index = i
+
+if array[min_index] < 0:
+    negative = min_index
+    for i in range(len(array)):
+        if array[negative] < array[i] < 0:
+            negative = i
+    print(f"Максимальный отрицательный элемент: {array[negative]}, индекс: {negative}")
+else:
+    print("Нет отрицательных чисел!")
